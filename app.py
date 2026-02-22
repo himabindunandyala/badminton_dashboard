@@ -14,7 +14,7 @@ st.title("BWF Men's Singles Badminton Dashboard")
 
 st.markdown("""
 ### Analytical Objective
-This dashboard examines men's singles badminton tournaments to identify trends in match activity over time, evaluate match competitiveness, and understand how events are distributed across different countries.
+This dashboard analyzes men's singles badminton tournaments to understand how match activity changes over time, how competitive matches are based on scoring patterns, and which countries host the most events. The goal is to understand how global badminton competitions are structured and how they vary across seasons and locations.
 """)
 
 # SIDEBAR FILTERS
@@ -55,7 +55,7 @@ with tab1:
     st.plotly_chart(px.line(matches_per_year, x="year", y="matches",
                             title="Matches per Year"), use_container_width=True)
     st.markdown("""
-    This chart shows how tournament activity changes over time. Variations in match numbers reflect changes in scheduling, competition frequency, or external factors affecting badminton events.
+    From the yearly trend, match activity does not stay the same every year. Some years have noticeably more matches, while others show drops, which may reflect changes in tournament scheduling or external factors affecting competitions. This shows that badminton activity is influenced by how the international tournament calendar is organized. 
     """)
     matches_by_type = filtered["tournament_type"].value_counts().reset_index()
     matches_by_type.columns = ["tournament_type", "matches"]
@@ -67,7 +67,7 @@ with tab1:
                     use_container_width=True)
 
     st.markdown("""
-This chart compares match counts across tournament levels. It shows which types of competitions contribute most to overall match activity.
+Looking at tournament types, some categories clearly host more matches than others. This suggests that certain competition levels play a bigger role in the sport and provide more opportunities for players to compete. Overall, these patterns help explain how badminton tournaments are structured and how competition activity changes over time.
 """)
 
 # TAB 2
@@ -81,7 +81,7 @@ with tab2:
                                title="Points Scored by Each Team"),
                     use_container_width=True)
     st.markdown("""
-    This chart shows how closely matched competitors are. Similar point totals indicate competitive matches, while large differences suggest dominant performances.
+    The points comparison shows that many matches are fairly close, which suggests that players are often evenly matched and competition is strong. However, some matches show large differences in points, which indicates dominant performances where one side clearly outplayed the other.
     """)
 
     heat = filtered.pivot_table(index="country",
@@ -96,7 +96,8 @@ with tab2:
                     use_container_width=True)
 
     st.markdown("""
-    This chart shows where tournaments are hosted and how hosting patterns change over time. Higher match counts highlight countries that are major centers for badminton events.
+    The country heatmap shows that tournaments are not evenly spread around the world. Some countries host many more matches than others, which suggests they play a major role in organizing international badminton events. Changes across years also show that hosting patterns can shift over time. Together, this helps explain both match competitiveness and the global distribution of tournaments.
 """)
+
 
 
