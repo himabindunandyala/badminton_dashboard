@@ -55,7 +55,6 @@ with tab1:
     st.plotly_chart(px.line(matches_per_year, x="year", y="matches",
                             title="Matches per Year"), use_container_width=True)
     st.markdown("""
-    ### Interpretation
     This chart shows how tournament activity changes over time. Variations in match numbers reflect changes in scheduling, competition frequency, or external factors affecting badminton events.
     """)
     matches_by_type = filtered["tournament_type"].value_counts().reset_index()
@@ -68,7 +67,6 @@ with tab1:
                     use_container_width=True)
 
     st.markdown("""
-### Interpretation
 This chart compares match counts across tournament levels. It shows which types of competitions contribute most to overall match activity.
 """)
 
@@ -83,7 +81,6 @@ with tab2:
                                title="Points Scored by Each Team"),
                     use_container_width=True)
     st.markdown("""
-    ### Interpretation
     This chart shows how closely matched competitors are. Similar point totals indicate competitive matches, while large differences suggest dominant performances.
     """)
 
@@ -99,7 +96,7 @@ with tab2:
                     use_container_width=True)
 
     st.markdown("""
-### Interpretation
-This chart shows where tournaments are hosted and how hosting patterns change over time. Higher match counts highlight countries that are major centers for badminton events.
+    This chart shows where tournaments are hosted and how hosting patterns change over time. Higher match counts highlight countries that are major centers for badminton events.
 """)
+
 
