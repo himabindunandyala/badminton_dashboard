@@ -14,8 +14,7 @@ st.title("BWF Men's Singles Badminton Dashboard")
 
 st.markdown("""
 ### Analytical Objective
-Analyze tournament activity, match intensity, and global distribution
-of men's singles badminton competitions.
+This dashboard examines men's singles badminton tournaments to identify trends in match activity over time, evaluate match competitiveness, and understand how events are distributed across different countries.
 """)
 
 # SIDEBAR FILTERS
@@ -55,7 +54,10 @@ with tab1:
     matches_per_year = filtered.groupby("year").size().reset_index(name="matches")
     st.plotly_chart(px.line(matches_per_year, x="year", y="matches",
                             title="Matches per Year"), use_container_width=True)
-
+    st.markdown("""
+    ### Interpretation
+    This chart shows how tournament activity changes over time. Variations in match numbers reflect changes in scheduling, competition frequency, or external factors affecting badminton events.
+    """)
     matches_by_type = filtered["tournament_type"].value_counts().reset_index()
     matches_by_type.columns = ["tournament_type", "matches"]
 
@@ -67,9 +69,7 @@ with tab1:
 
     st.markdown("""
 ### Interpretation
-Match counts vary across years depending on tournament schedules.
-Certain tournament levels host more matches, indicating where
-elite badminton competition occurs.
+This chart compares match counts across tournament levels. It shows which types of competitions contribute most to overall match activity.
 """)
 
 # TAB 2
@@ -82,6 +82,10 @@ with tab2:
                                color="nb_sets",
                                title="Points Scored by Each Team"),
                     use_container_width=True)
+    st.markdown("""
+    ### Interpretation
+    This chart shows how closely matched competitors are. Similar point totals indicate competitive matches, while large differences suggest dominant performances.
+    """)
 
     heat = filtered.pivot_table(index="country",
                                 columns="year",
@@ -96,6 +100,6 @@ with tab2:
 
     st.markdown("""
 ### Interpretation
-Matches with higher point totals indicate competitive rallies.
-The heatmap shows geographic distribution of tournaments worldwide.
+This chart shows where tournaments are hosted and how hosting patterns change over time. Higher match counts highlight countries that are major centers for badminton events.
 """)
+
