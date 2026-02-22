@@ -33,9 +33,25 @@ tournament_type = st.sidebar.multiselect(
     default=df["tournament_type"].dropna().unique()
 )
 
+st.sidebar.subheader("Player Filter")
+
+all_players = pd.concat([
+    df["team_one_players"],
+    df["team_two_players"]
+]).dropna().unique()
+
+selected_player = st.sidebar.selectbox(
+    "Select Player",
+    sorted(all_players)
+)
+
 filtered = df[
     (df["year"].between(year_range[0], year_range[1])) &
     (df["tournament_type"].isin(tournament_type))
+player_matches = filtered[
+    (filtered["team_one_players"] == selected_player) |
+    (filtered["team_two_players"] == selected_player)
+]
 ]
 
 # METRICS
@@ -69,10 +85,22 @@ with tab1:
     st.markdown("""
 Looking at tournament types, some categories clearly host more matches than others. This suggests that certain competition levels play a bigger role in the sport and provide more opportunities for players to compete. Overall, these patterns help explain how badminton tournaments are structured and how competition activity changes over time.
 """)
-
+    
 # TAB 2
 with tab2:
     st.header("Match Characteristics")
+    
+    st.subheader("Selected Player Analysis")
+
+    st.write("Player:", selected_player)
+    st.write("Matches played:", len(player_matches))
+    st.dataframe(player_matches[[
+    "tournament",
+    "country",
+    "date",
+    "winner",
+    "nb_sets"
+]])
 
     st.plotly_chart(px.scatter(filtered,
                                x="team_one_total_points",
@@ -98,6 +126,16 @@ with tab2:
     st.markdown("""
     The country heatmap shows that tournaments are not evenly spread around the world. Some countries host many more matches than others, which suggests they play a major role in organizing international badminton events. Changes across years also show that hosting patterns can shift over time. Together, this helps explain both match competitiveness and the global distribution of tournaments.
 """)
+st.subheader("Match Intensity Distribution")
+
+fig_sets = px.histogram(filtered,
+                        x="nb_sets",
+                        title="Distribution of Matches by Number of Sets")
+
+   st.plotly_chart(fig_sets, use_container_width=True)
+   st.markdown("""
+   This chart shows how many matches are decided in two sets versus three sets. Most matches finishing in two sets suggest clear wins, while matches going to three sets indicate closer and more competitive contests. If a large number of matches reach three sets, it suggests strong competition and balanced player performance.
+   """)
 
 
 
