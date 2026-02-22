@@ -48,10 +48,11 @@ selected_player = st.sidebar.selectbox(
 filtered = df[
     (df["year"].between(year_range[0], year_range[1])) &
     (df["tournament_type"].isin(tournament_type))
+]
+
 player_matches = filtered[
     (filtered["team_one_players"] == selected_player) |
     (filtered["team_two_players"] == selected_player)
-]
 ]
 
 # METRICS
@@ -136,6 +137,7 @@ fig_sets = px.histogram(filtered,
    st.markdown("""
    This chart shows how many matches are decided in two sets versus three sets. Most matches finishing in two sets suggest clear wins, while matches going to three sets indicate closer and more competitive contests. If a large number of matches reach three sets, it suggests strong competition and balanced player performance.
    """)
+
 
 
 
