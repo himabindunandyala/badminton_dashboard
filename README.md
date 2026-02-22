@@ -7,11 +7,12 @@ This dashboard analyzes men's singles badminton match data to understand tournam
 The data used in this dashboard comes from publicly available Badminton World Federation (BWF) World Tour match records.
 Dataset obtained from Kaggle: Badminton BWF World Tour Matches (2018-2021)
 This dataset contains detailed match-level information, including tournament location, event type, match results, and scoring statistics.
+Dataset link: https://www.kaggle.com/datasets/sanderp/badminton-bwf-world-tour
 
 ### Data Collection Method
 The dataset was obtained through direct download from Kaggle as a CSV file.
 No API access or web scraping was required.
-The file was stored locally and uploaded to the GitHub Repository in the data folder for use in the Streamline dashboard.
+The file was stored locally and uploaded to the GitHub Repository in the data folder for use in the Streamlit dashboard.
 
 ### Data Update Procedure (Future Seasons)
 To keep the dashboard updated as new badminton tournaments occur:
