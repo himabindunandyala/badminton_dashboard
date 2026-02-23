@@ -86,7 +86,20 @@ with tab1:
     st.markdown("""
 Looking at tournament types, some categories clearly host more matches than others. This suggests that certain competition levels play a bigger role in the sport and provide more opportunities for players to compete. Overall, these patterns help explain how badminton tournaments are structured and how competition activity changes over time.
 """)
-    
+
+    st.subheader("Tournament Type Share")
+
+    type_counts = filtered["tournament_type"].value_counts().reset_index()
+    type_counts.columns = ["tournament_type", "matches"]
+
+    fig_pie = px.pie(type_counts,
+                 names="tournament_type",
+                 values="matches",
+                 title="Share of Matches by Tournament Type",
+                 hole=0.3)   
+
+    st.plotly_chart(fig_pie, use_container_width=True)
+
 # TAB 2
 with tab2:
   st.header("Match Characteristics")
@@ -144,6 +157,7 @@ The country heatmap shows that tournaments are not evenly spread around the worl
   st.plotly_chart(fig_sets, use_container_width=True)
 
   
+
 
 
 
