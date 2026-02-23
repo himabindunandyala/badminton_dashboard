@@ -141,22 +141,23 @@ The points comparison shows that many matches are fairly close, which suggests t
 The country heatmap shows that tournaments are not evenly spread around the world. Some countries host many more matches than others, which suggests they play a major role in organizing international badminton events. Changes across years also show that hosting patterns can shift over time. Together, this helps explain both match competitiveness and the global distribution of tournaments.
 """)
 
-  st.subheader("Match Intensity Distribution")
+  st.subheader("Score Distribution by Match Length")
 
-  sets_count = filtered["nb_sets"].value_counts().sort_index().reset_index()
-  sets_count.columns = ["sets", "matches"]
+  filtered["total_points"] = (
+    filtered["team_one_total_points"] +
+    filtered["team_two_total_points"]
+)
 
-  fig_sets = px.bar(sets_count,
-                  x="sets",
-                  y="matches",
-                  text="matches",
-                  title="Number of Matches by Sets Played")
+  fig_box = px.box(filtered,
+                 x="nb_sets",
+                 y="total_points",
+                 color="nb_sets",
+                 title="Distribution of Total Points by Number of Sets")
 
-  fig_sets.update_traces(textposition="outside")
-
-  st.plotly_chart(fig_sets, use_container_width=True)
+  st.plotly_chart(fig_box, use_container_width=True)
 
   
+
 
 
 
