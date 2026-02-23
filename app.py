@@ -100,6 +100,10 @@ Looking at tournament types, some categories clearly host more matches than othe
 
     st.plotly_chart(fig_pie, use_container_width=True)
 
+    st.markdown("""
+Match activity is concentrated in a few tournament types, showing that certain competition levels dominate the badminton schedule. This concentration influences where players gain most competitive exposure and ranking opportunities. Lower representation in other tournament categories may reflect fewer events or limited participation. These patterns help explain how tournament structure shapes overall competition activity.
+""")
+
 # TAB 2
 with tab2:
   st.header("Match Characteristics")
@@ -115,7 +119,10 @@ with tab2:
       "winner",
       "nb_sets"
 ]])
-
+  st.markdown("""
+This section shows how frequently the selected player competes and how their matches are distributed across tournaments. More appearances suggest greater competitive involvement, while match outcomes and number of sets provide insight into performance consistency and match competitiveness. This helps evaluate individual player activity within the overall tournament environment.
+""")
+    
   st.plotly_chart(px.scatter(filtered,
                        x="team_one_total_points",
                        y="team_two_total_points",
@@ -156,7 +163,12 @@ The country heatmap shows that tournaments are not evenly spread around the worl
 
   st.plotly_chart(fig_box, use_container_width=True)
 
+  st.markdown("""
+Matches that last more sets generally produce higher total scores and greater variation, showing that longer matches tend to be more competitive. Large score ranges indicate differences in match intensity, while extreme outliers represent unusually demanding games. These patterns help explain how competitiveness changes depending on match length.
+""")
+
   
+
 
 
 
