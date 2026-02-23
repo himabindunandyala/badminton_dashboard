@@ -127,17 +127,23 @@ The points comparison shows that many matches are fairly close, which suggests t
   st.markdown("""
 The country heatmap shows that tournaments are not evenly spread around the world. Some countries host many more matches than others, which suggests they play a major role in organizing international badminton events. Changes across years also show that hosting patterns can shift over time. Together, this helps explain both match competitiveness and the global distribution of tournaments.
 """)
+
   st.subheader("Match Intensity Distribution")
 
-  fig_sets = px.histogram(filtered,
-                x="nb_sets",
-                title="Distribution of Matches by Number of Sets")
+  sets_count = filtered["nb_sets"].value_counts().sort_index().reset_index()
+  sets_count.columns = ["sets", "matches"]
+
+  fig_sets = px.bar(sets_count,
+                  x="sets",
+                  y="matches",
+                  text="matches",
+                  title="Number of Matches by Sets Played")
+
+  fig_sets.update_traces(textposition="outside")
+
   st.plotly_chart(fig_sets, use_container_width=True)
 
-  st.markdown("""
-This chart shows how many matches are decided in two sets versus three sets. Most matches finishing in two sets suggest clear wins, while matches going to three sets indicate closer and more competitive contests. If a large number of matches reach three sets, it suggests strong competition and balanced player performance.
-""")
-
+  
 
 
 
