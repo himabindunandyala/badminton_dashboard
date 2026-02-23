@@ -89,13 +89,13 @@ Looking at tournament types, some categories clearly host more matches than othe
     
 # TAB 2
 with tab2:
-st.header("Match Characteristics")
+  st.header("Match Characteristics")
 
-st.subheader("Selected Player Analysis")
+  st.subheader("Selected Player Analysis")
 
-st.write("Player:", selected_player)
-st.write("Matches played:", len(player_matches))
-st.dataframe(player_matches[[
+  st.write("Player:", selected_player)
+  st.write("Matches played:", len(player_matches))
+  st.dataframe(player_matches[[
 "tournament",
 "country",
 "date",
@@ -104,25 +104,25 @@ st.dataframe(player_matches[[
 ]])
 
 st.plotly_chart(px.scatter(filtered,
-                           x="team_one_total_points",
-                           y="team_two_total_points",
-                           color="nb_sets",
-                           title="Points Scored by Each Team"),
-                use_container_width=True)
+                       x="team_one_total_points",
+                       y="team_two_total_points",
+                       color="nb_sets",
+                       title="Points Scored by Each Team"),
+            use_container_width=True)
 st.markdown("""
 The points comparison shows that many matches are fairly close, which suggests that players are often evenly matched and competition is strong. However, some matches show large differences in points, which indicates dominant performances where one side clearly outplayed the other.
 """)
 
 heat = filtered.pivot_table(index="country",
-                            columns="year",
-                            values="tournament",
-                            aggfunc="count",
-                            fill_value=0)
+                        columns="year",
+                        values="tournament",
+                        aggfunc="count",
+                        fill_value=0)
 
 st.plotly_chart(px.imshow(heat,
-                          text_auto=True,
-                          title="Matches Hosted by Country and Year"),
-                use_container_width=True)
+                      text_auto=True,
+                      title="Matches Hosted by Country and Year"),
+            use_container_width=True)
 
 st.markdown("""
 The country heatmap shows that tournaments are not evenly spread around the world. Some countries host many more matches than others, which suggests they play a major role in organizing international badminton events. Changes across years also show that hosting patterns can shift over time. Together, this helps explain both match competitiveness and the global distribution of tournaments.
@@ -130,13 +130,14 @@ The country heatmap shows that tournaments are not evenly spread around the worl
 st.subheader("Match Intensity Distribution")
 
 fig_sets = px.histogram(filtered,
-                    x="nb_sets",
-                    title="Distribution of Matches by Number of Sets")
+                x="nb_sets",
+                title="Distribution of Matches by Number of Sets")
 st.plotly_chart(fig_sets, use_container_width=True)
 
 st.markdown("""
 This chart shows how many matches are decided in two sets versus three sets. Most matches finishing in two sets suggest clear wins, while matches going to three sets indicate closer and more competitive contests. If a large number of matches reach three sets, it suggests strong competition and balanced player performance.
 """)
+
 
 
 
